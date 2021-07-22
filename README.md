@@ -37,7 +37,7 @@ github图片会挂掉，所以点开链接看吧：
 
 ##### 对于有【后台弹出界面】权限限制的手机
 
-比如下面这个权限的手机：
+比如下面这个权限的手机：<br/>
 ![image.png](https://www.wenjie.store/blog/img/image_1626952858672.png)
 
 我们需要执行命令：`adb shell appops set wenjie.star.system_alarm_clock_by_adb [手机厂商权限key] allow`
