@@ -6,7 +6,8 @@
 
 #### 效果
 
-![闹钟设置](https://www.wenjie.store/blog/img/%E9%97%B9%E9%92%9F%E8%AE%BE%E7%BD%AE_1626868736962.gif)
+（github图片会挂掉，所以点开链接看吧）  
+https://www.wenjie.store/blog/img/%E9%97%B9%E9%92%9F%E8%AE%BE%E7%BD%AE_1626868736962.gif
 
 #### 设置闹钟命令
 
@@ -15,4 +16,3 @@
 - --es msg [闹钟备注]
 - --ei hour[闹钟小时(24小时制)]
 - --ei min [闹钟分钟]
-
