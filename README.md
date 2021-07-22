@@ -26,9 +26,9 @@ github图片会挂掉，所以点开链接看吧：
 - --ei min [闹钟分钟]
 
 ---
-如果运行上述命令后出现错误：`Error: Not found; no service started.`<br/>
-那么请执行一次`adb shell am start wenjie.star.system_alarm_clock_by_adb/.MainActivity`<br/>
-原因是后台进程被杀了，后台进程能不能保活又得看厂商的配置，所以最终建议就是完成下面的手机适配后，每次执行设置闹钟命令之前，都执行几次激活
+- 如果运行上述命令后出现错误：`Error: Not found; no service started.`<br/>
+- 那么请执行一次`adb shell am start wenjie.star.system_alarm_clock_by_adb/.MainActivity`<br/>
+- 原因是后台进程被杀了，后台进程能不能保活又得看厂商的配置，所以最终建议就是完成下面的手机适配后，每次执行设置闹钟命令之前，都执行几次激活
 
 ---
 
