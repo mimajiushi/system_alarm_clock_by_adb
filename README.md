@@ -10,7 +10,7 @@
 
 github图片会挂掉，所以点开链接看吧：
 
-小米：https://www.wenjie.store/blog/img/%E8%AE%BE%E7%BD%AE%E9%97%B9%E9%92%9F_%E5%B0%8F%E7%B1%B3_1626953593249.gif
+小米：https://www.wenjie.store/blog/img/%E8%AE%BE%E7%BD%AE%E9%97%B9%E9%92%9F_%E5%B0%8F%E7%B1%B3_1626953593249.gif<br/>
 华为：https://www.wenjie.store/blog/img/%E9%97%B9%E9%92%9F%E8%AE%BE%E7%BD%AE_%E5%8D%8E%E4%B8%BA.gif
 
 > 可以看到小米的屏幕会闪，而华为P30不会，这是系统决定的，我也控制不了
