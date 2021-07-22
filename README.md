@@ -44,7 +44,8 @@ github图片会挂掉，所以点开链接看吧：
 你可能很疑惑[手机厂商权限key]是个啥，没关系，下面就会讲到
 
 要找出[手机厂商权限key]，我们需要如下操作
-- 安装完apk后，我们先执行命令：`adb shell appops get wenjie.star.system_alarm_clock_by_adb`，下简称`get`命令
+- 安装完apk后，执行命令：`adb shell appops set wenjie.star.system_alarm_clock_by_adb SYSTEM_ALERT_WINDOW allow`，没有报错就是成功
+- 再执行命令：`adb shell appops get wenjie.star.system_alarm_clock_by_adb`，下简称`get`命令
 ![image.png](https://www.wenjie.store/blog/img/image_1626950316508.png)
 - 注意红框那条，等下就消失了
 - 然后我们在手机手动开启【后台弹出界面】的权限：
