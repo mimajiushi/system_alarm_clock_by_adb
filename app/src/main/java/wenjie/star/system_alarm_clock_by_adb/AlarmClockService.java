@@ -47,7 +47,6 @@ public class AlarmClockService extends IntentService {
                 // 跳过UI
                 .putExtra(AlarmClock.EXTRA_SKIP_UI, true);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(intent);
         if (intent.resolveActivity(getPackageManager()) != null) {
             PendingIntent pendingIntent = PendingIntent.getActivity(this, new Random().nextInt(), intent, 0);
             if(Build.VERSION.SDK_INT<19){
