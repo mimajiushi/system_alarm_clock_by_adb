@@ -41,20 +41,20 @@ https://www.wenjie.store/blog/img/%E9%97%B9%E9%92%9F%E8%AE%BE%E7%BD%AE_162686873
 
 要找出[手机厂商权限key]，我们需要如下操作
 - 安装完apk后，我们先执行命令：`adb shell appops get wenjie.star.system_alarm_clock_by_adb`，下简称`get`命令
-- ![image.png](https://www.wenjie.store/blog/img/image_1626950316508.png)
-    - 注意红框那条，等下就消失了
+![image.png](https://www.wenjie.store/blog/img/image_1626950316508.png)
+- 注意红框那条，等下就消失了
 - 然后我们在手机手动开启【后台弹出界面】的权限：
-- ![image.png](https://www.wenjie.store/blog/img/image_1626950759196.png)
+![image.png](https://www.wenjie.store/blog/img/image_1626950759196.png)
 - 再次执行`get`命令，会发现`10021`这个权限不见了：
-- ![image.png](https://www.wenjie.store/blog/img/image_1626950811963.png)
+![image.png](https://www.wenjie.store/blog/img/image_1626950811963.png)
 - 到此为止，我们就成功发现[手机厂商权限key]就是`10021`
 
 ---
 
 - 接着我们再把【后台弹出界面】的权限关掉：
-- ![image.png](https://www.wenjie.store/blog/img/image_1626952858672.png)
+![image.png](https://www.wenjie.store/blog/img/image_1626952858672.png)
 - 执行命令（你也可以再用set命令验证一次）：`adb shell appops set wenjie.star.system_alarm_clock_by_adb 10021 allow`，下简称`set`命令
-- ![image.png](https://www.wenjie.store/blog/img/image_1626952976052.png)
+![image.png](https://www.wenjie.store/blog/img/image_1626952976052.png)
 - 没有报错，那就是成功了，接着再执行设置闹钟的命令就能成功了
 
 如果你不确定到底是什么数字，那么在安装完应用后，写一个for脚本遍历数字去set就行了
