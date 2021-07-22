@@ -17,18 +17,32 @@ https://www.wenjie.store/blog/img/%E9%97%B9%E9%92%9F%E8%AE%BE%E7%BD%AE_162686873
 - --ei hour[闹钟小时(24小时制)]
 - --ei min [闹钟分钟]
 
+ **启动service可能会有一定延迟**
+
 #### 特殊手机的适配
 
-对于有【后台弹出界面】权限限制的手机，比如下面这个权限：
+##### 对于有【后台弹出界面】权限限制的手机
+比如下面这个权限：
 ![image.png](https://www.wenjie.store/blog/img/image_1626943692408.png)
 
-需要先执行`adb shell appops set wenjie.star.system_alarm_clock_by_adb 10021 allow`命令
-执行完后【后台弹出界面】的权限虽然还是打x，但已经不影响了
+需要提前授权一些奇怪的数字，下面会一步步说什么是奇怪的数字：
+- 首先执行：`adb shell appops get wenjie.star.system_alarm_clock_by_adb`
+- ![image.png](https://www.wenjie.store/blog/img/image_1626947480514.png)
+- 之后对其中`ignore`的地方授权
+- 逐一执行命令（对应数字）👇
+- ![image.png](https://www.wenjie.store/blog/img/image_1626947675623.png)
+- 之后用get命令重新查看，可以看到变成allow了👇
+- ![image.png](https://www.wenjie.store/blog/img/image_1626947728674.png)
+- 之后再执行设置闹钟的命令就能正常执行了
 
-说一下是怎么发现小米的这个问题的
-- 安装好app后，没有权限，此时执行`adb shell appops get wenjie.star.system_alarm_clock_by_adb`
-- 手动授予【后台弹出界面】权限后，再执行一次上一行的命令，对比如下
-- ![image.png](https://www.wenjie.store/blog/img/image_1626943877824.png)
-- 会发现授权后，有一个权限消失了，权限名就是`10021`，之后我尝试把这个属性设置成allow，没想到居然成功了
+如果你不确定到底是什么数字，那么在安装完应用后，写一个for脚本遍历数字去set就行了
+
+
+###### 对于没有【后台弹出界面】权限的手机
+
+这种手机通过service调用startActivity是会失败的（没有报错），但是对应权限的权限不同，比如我手上的华为P30 Pro就是
+
+安装apk后
+执行`adb shell appops set wenjie.star.system_alarm_clock_by_adb SYSTEM_ALERT_WINDOW allow`
 
 

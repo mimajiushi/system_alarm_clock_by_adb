@@ -6,8 +6,8 @@
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <!--通知权限-->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-
+    <!--低版本需要的是悬浮窗的权限-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"

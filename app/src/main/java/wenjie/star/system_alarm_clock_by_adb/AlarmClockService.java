@@ -47,32 +47,33 @@ public class AlarmClockService extends IntentService {
                 // 跳过UI
                 .putExtra(AlarmClock.EXTRA_SKIP_UI, true);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, new Random().nextInt(), intent, 0);
-            if(Build.VERSION.SDK_INT<19){
-                alarmManager.set(
-                        AlarmManager.RTC_WAKEUP,
-                        System.currentTimeMillis(),
-                        pendingIntent
-                );
-                alarmManager.setAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        System.currentTimeMillis(),
-                        pendingIntent
-                );
-            }else{
-                alarmManager.setExact(
-                        AlarmManager.RTC_WAKEUP,
-                        System.currentTimeMillis(),
-                        pendingIntent
-                );
-                alarmManager.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        System.currentTimeMillis(),
-                        pendingIntent
-                );
-            }
-        }
+        startActivity(intent);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            PendingIntent pendingIntent = PendingIntent.getActivity(this, new Random().nextInt(), intent, 0);
+//            if(Build.VERSION.SDK_INT<19){
+//                alarmManager.set(
+//                        AlarmManager.RTC_WAKEUP,
+//                        0,
+//                        pendingIntent
+//                );
+//                alarmManager.setAndAllowWhileIdle(
+//                        AlarmManager.RTC_WAKEUP,
+//                        0,
+//                        pendingIntent
+//                );
+//            }else{
+//                alarmManager.setExact(
+//                        AlarmManager.RTC_WAKEUP,
+//                        0,
+//                        pendingIntent
+//                );
+//                alarmManager.setExactAndAllowWhileIdle(
+//                        AlarmManager.RTC_WAKEUP,
+//                        0,
+//                        pendingIntent
+//                );
+//            }
+//        }
     }
 
     private void startForeground() {
