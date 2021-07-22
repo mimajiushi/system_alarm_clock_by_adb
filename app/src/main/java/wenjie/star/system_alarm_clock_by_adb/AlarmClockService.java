@@ -38,7 +38,6 @@ public class AlarmClockService extends IntentService {
     public void createAlarm(String message, int hour, int minutes) {
         // 纯Service在没有activity时调用startActivity设置闹钟会失败，这里套了一层alarmManager去调用就成功了
         AlarmManager alarmManager = (AlarmManager) getSystemService(Service.ALARM_SERVICE);
-
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
                 .putExtra(AlarmClock.EXTRA_MESSAGE, message)
                 .putExtra(AlarmClock.EXTRA_HOUR, hour)
@@ -48,6 +47,7 @@ public class AlarmClockService extends IntentService {
                 // 跳过UI
                 .putExtra(AlarmClock.EXTRA_SKIP_UI, true);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
         if (intent.resolveActivity(getPackageManager()) != null) {
             PendingIntent pendingIntent = PendingIntent.getActivity(this, new Random().nextInt(), intent, 0);
             if(Build.VERSION.SDK_INT<19){
