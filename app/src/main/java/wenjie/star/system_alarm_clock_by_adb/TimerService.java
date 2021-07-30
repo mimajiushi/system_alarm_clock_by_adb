@@ -1,46 +1,43 @@
 package wenjie.star.system_alarm_clock_by_adb;
 
-import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.AlarmClock;
 
 import androidx.annotation.Nullable;
 
-import java.util.Random;
-
-public class AlarmClockService extends IntentService {
+/**
+ * 设置定时器（不同于闹钟，只能有一个）
+ */
+public class TimerService extends IntentService {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    public AlarmClockService() {
-        super("AlarmClockService");
+    public TimerService() {
+        super("TimerService");
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         startForeground();
         String msg = intent.getStringExtra("msg");
-        int hour = intent.getIntExtra("hour", -1);
-        int min = intent.getIntExtra("min", -1);
-        createAlarm(msg, hour, min);
+        int afterSec = intent.getIntExtra("afterSec", 1);
+        createTimer(msg, afterSec);
     }
 
     /**
      * 设置系统闹钟
      */
-    public void createAlarm(String message, int hour, int minutes) {
+    public void createTimer(String message, int afterSec) {
         // 纯Service在没有activity时调用startActivity设置闹钟会失败，这里套了一层alarmManager去调用就成功了
-        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+        Intent intent = new Intent(AlarmClock.ACTION_SET_TIMER)
                 .putExtra(AlarmClock.EXTRA_MESSAGE, message)
-                .putExtra(AlarmClock.EXTRA_HOUR, hour)
-                .putExtra(AlarmClock.EXTRA_MINUTES, minutes)
+                .putExtra(AlarmClock.EXTRA_LENGTH, afterSec)
                 // 闹钟震动
                 .putExtra(AlarmClock.EXTRA_VIBRATE, false)
                 // 跳过UI
@@ -52,7 +49,7 @@ public class AlarmClockService extends IntentService {
     private void startForeground() {
         Intent intent = new Intent();
         String title = "后台服务";
-        String content = "设置闹钟ing";
+        String content = "设置计时器ing..";
         Notification.Builder builder = new Notification.Builder(this, title)
                 .setContentIntent(PendingIntent.getService(this, 0, intent, 0))// 设置PendingIntent
                 .setSmallIcon(R.mipmap.ic_launcher) // 设置状态栏内的小图标
@@ -61,7 +58,7 @@ public class AlarmClockService extends IntentService {
                 .setWhen(System.currentTimeMillis());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String CHANNEL_ONE_ID = "alarm_clock_service";
+            String CHANNEL_ONE_ID = "timer_service";
             // 修改安卓8.1以上系统报错
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ONE_ID, title, NotificationManager.IMPORTANCE_MIN);
             notificationChannel.enableLights(false);//如果使用中的设备支持通知灯，则说明此通知通道是否应显示灯

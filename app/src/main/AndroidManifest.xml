@@ -29,6 +29,12 @@
                 <action android:name="set_alarm_clock" />
             </intent-filter>
         </service>
+        <service android:name=".TimerService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="set_timer" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
