@@ -17,6 +17,10 @@ github图片会挂掉，所以点开链接看吧：
 
 ---
 
+#### 特别提醒
+
+**在运行设置闹钟、设置定时器命令之前，请先【手机适配】环节**
+
 #### 设置闹钟命令
 
 `adb shell am start-foreground-service -n wenjie.star.system_alarm_clock_by_adb/.AlarmClockService -a "set_alarm_clock" --es msg \"测试闹钟1\" --ei hour 20 --ei min 20`
@@ -26,13 +30,22 @@ github图片会挂掉，所以点开链接看吧：
 - --ei min [闹钟分钟]
 
 ---
+
+#### 设置定时器命令
+`adb shell am start-foreground-service -n wenjie.star.system_alarm_clock_by_adb/.TimerService -a "set_timer" --es msg \"测试定时器1\" --ei afterSec 30`
+- 上面命令意思就是：30秒后响起计时器（跟闹钟发出同样的信号）
+- --es msg [计时器备注]
+- --ei afterSec [计时器倒计时]
+
+---
+
 - 如果运行上述命令后出现错误：`Error: Not found; no service started.`<br/>
 - 那么请执行一次`adb shell am start wenjie.star.system_alarm_clock_by_adb/.MainActivity`<br/>
 - 原因是后台进程被杀了，后台进程能不能保活又得看厂商的配置，所以最终建议就是完成下面的手机适配后，每次执行设置闹钟命令之前，都执行激活
 
 ---
 
-#### 手机的适配
+#### 手机适配
 
 如果安装apk后直接执行上面的设置闹钟命令，那是必定无效的（可能没有报错），为了适配各种手机版本+权限，你需要看完下面的设置教程
 
